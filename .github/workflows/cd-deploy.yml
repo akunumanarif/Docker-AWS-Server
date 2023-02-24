@@ -28,14 +28,13 @@ jobs:
           DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
           DOCKER_TLS_VERIFY: "1"
         run: |
-          mkdir -pv ~/.docker
-
-          echo "${{ secrets.DOCKER_CA }}" | base64 --decode         
-          echo "${{ secrets.DOCKER_CERT }}" | base64 --decode 
-          echo "${{ secrets.DOCKER_KEY }}" | base64 --decode 
-
+          sudo mkdir -pv ~/.docker
+          echo "${{ secrets.DOCKER_CA }}" | base64 --decode | sudo tee ~/.docker/ca.pem          
+          echo "${{ secrets.DOCKER_CERT }}" | base64 --decode | sudo tee ~/.docker/cert.pem
+          echo "${{ secrets.DOCKER_KEY }}" | base64 --decode | sudo tee ~/.docker/key.pem
+        
           docker version
-          
+
       - name: build-and-deploy
         env:
           DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
