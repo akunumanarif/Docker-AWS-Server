@@ -25,45 +25,18 @@ jobs:
           
       - name: configure-docker-cli
         env:
+        DOCKER_CA: ${{ secrets.DOCKER_CA }}
+          DOCKER_CERT: ${{ secrets.DOCKER_CERT }}
+          DOCKER_KEY: ${{ secrets.DOCKER_KEY }}
           DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
           DOCKER_TLS_VERIFY: "1"
         run: |
-          sudo mkdir -pv ~/.docker
+          mkdir -pv ~/.docker
           
-          echo <MIIF2zCCA8OgAwIBAgIJAJINxIv33M24MA0GCSqGSIb3DQEBCwUAMIGDMQswCQYD
-                VQQGEwJpZDEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MRwwGgYDVQQKDBNEZWZhdWx0
-                IENvbXBhbnkgTHRkMT8wPQYDVQQDDDZlYzItMTgtMTc5LTI1LTE2OS5hcC1ub3J0
-                aGVhc3QtMS5jb21wdXRlLmFtYXpvbmF3cy5jb20wHhcNMjMwMjI0MDYzNzAxWhcN
-                MjQwMjI0MDYzNzAxWjCBgzELMAkGA1UEBhMCaWQxFTATBgNVBAcMDERlZmF1bHQg
-                Q2l0eTEcMBoGA1UECgwTRGVmYXVsdCBDb21wYW55IEx0ZDE/MD0GA1UEAww2ZWMy
-                LTE4LTE3OS0yNS0xNjkuYXAtbm9ydGhlYXN0LTEuY29tcHV0ZS5hbWF6b25hd3Mu
-                Y29tMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAuU9Yadybk8GviIec
-                S1qJ6OGX1r7xpgsygCly6LALM9eaNOiIrku4f2jelPkbZ+xO2W4vgKMiQL5qpFBb
-                nkDHx5ss/J+EKhknMI8U+EIi8QlBZ7DDybGGfDlI1ZqGA6enYoAxv2O772Wn1QE6
-                UFKOjHaoLXAkoqx4HJAkXqbzHc7sq85G8lCa+E57OcxXLfMKue/tLyno5RWhTAQG
-                qq05nBK8AvBYJzKqQd2fNzZfGOa1eghWIX82oO6B7YdI18mdn3rywTWvH6KcIhWZ
-                TgNE8O3WmqP6WN84B9HTNRfdk0Gu16kPo56L9xSeQE8SBj0xoB/5F7gvDY02UXnq
-                i9kqNfDxmoO61kFcBclTTnySd9sDvxwdK+e5OwqGc06yTkhk4lCQpcJ5euJ/Qdo+
-                xbESNKSF6FcH5z5vPJdJHAAiXM//r2beiTgHZFl4gu21kY7qfRz1wLJwvcJG4V1u
-                Mz2xC94jRd8SQW+mbqdiZ+618ulCUT82QjW1Vlww4oa5j7L8DeGNg6+8bfKUPCUF
-                79HLlwLyHc7EscF9ZhpoAQnYKkVQx/7useMibDSiFPzSe+FuIxFeEFeZWwzad+8j
-                eVJe7UdOyaD69IyMyQETOoHwm/kirZQpzOms91VYExwSGDjwRjto4jA5TCkt/zZ+
-                LXGfU5JXO8EE+ImEhjhuSpdYOxECAwEAAaNQME4wHQYDVR0OBBYEFD3fNGboq6gj
-                tg2TS/QeYaH3pA58MB8GA1UdIwQYMBaAFD3fNGboq6gjtg2TS/QeYaH3pA58MAwG
-                A1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggIBAB1zwnO6lvl4h1BWlkbMs/GU
-                Gnk1gyVtPyCNv6ZBu74+P3KUYgQElIgliJNShLQCPak0nyR4nD8jDtfpv+vhvA7t
-                S+/DrO+c5wc6dkhP6/4MbPMMHgeFk4UtV3LLsvkQUGNJzK46frbEq7yEwxXBEEks
-                ol1H2d1hxepKBoZBgDhKv0CJF3FeSnc03EKkHRCnxt4Z7Hp8TApxb05dFPSka9VJ
-                3UnYwLvrXI3UTZLlUPNpJ9nDBAkfk9EcZdFUsxXDhjETPa+Y0NW7DHODOl6U3j9R
-                G7af4/HQjq9snfsecpB8HQhqiduIcpNmK2r0jDVzzuDyJCtVvOaU0z92CMPaoEEs
-                5QPu/NuzDi7iG0cUyt7OB60oAZS340T+h2+uMHCs77uFekCxNJp9Gj1Qv8GDSoZf
-                RnVTlASeq6rLPSBZCJPzTOezouu3KGEbLRziWFaM1bTNM/3NZMCvIg99O/CWxwqi
-                w9WJaTtPSF9Y4jmhNRyfSt4lveKryaqs6gPUeYi8jLAfNlRk/96fovIk13z9D7u2
-                dKpmWuyYGp5HPiXW+HJcK3ScUdzMV37ree0dobHRstsoeLSy7R84/qA+qGj2Dr9J
-                QJKUIMpLMt9f2Ub88je0JyzsmXrvd/G+Ds5Wobk+Xpo13Da2ZUPkaWTLle2p5Z2n
-                Ww5ESARqEcOYLo2LpWuM> | base64 --decode > ~/.docker/ca.pem
-          echo "${{ secrets.DOCKER_CERT }}" | base64 --decode > ~/.docker/cert.pem
-          echo "${{ secrets.DOCKER_KEY }}" | base64 --decode > ~/.docker/key.pem
+          echo "$DOCKER_CA" | base64 --decode > ~/.docker/ca.pem
+          echo "$DOCKER_CERT" | base64 --decode > ~/.docker/cert.pem
+          echo "$DOCKER_KEY" | base64 --decode > ~/.docker/key.pem
+          docker version
 
           docker version
           
