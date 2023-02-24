@@ -31,7 +31,7 @@ jobs:
           DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
           DOCKER_TLS_VERIFY: "1"
         run: |
-          mkdir -pv ~/.docker 
+          mkdir -pv ~/.docker
           
           echo "$DOCKER_CA" | base64 --decode > ~/.docker/ca.pem
           echo "$DOCKER_CERT" | base64 --decode > ~/.docker/cert.pem

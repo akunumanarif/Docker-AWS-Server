@@ -33,9 +33,9 @@ jobs:
         run: |
           mkdir -pv ~/.docker
           
-          echo "$DOCKER_CA" | base64 --decode > ~/.docker/ca.pem
-          echo "$DOCKER_CERT" | base64 --decode > ~/.docker/cert.pem
-          echo "$DOCKER_KEY" | base64 --decode > ~/.docker/key.pem
+          echo $DOCKER_CA | base64 --decode > ~/.docker/ca.pem
+          echo $DOCKER_CERT | base64 --decode > ~/.docker/cert.pem
+          echo $DOCKER_KEY | base64 --decode > ~/.docker/key.pem
           docker version
 
           docker version
