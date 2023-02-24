@@ -28,7 +28,7 @@ jobs:
           DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
           DOCKER_TLS_VERIFY: "1"
         run: |
-          sudo mkdir -pv ~/.docker
+          mkdir -pv ~/.docker
           
           echo <MIIF2zCCA8OgAwIBAgIJAJINxIv33M24MA0GCSqGSIb3DQEBCwUAMIGDMQswCQYD
                 VQQGEwJpZDEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MRwwGgYDVQQKDBNEZWZhdWx0
