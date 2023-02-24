@@ -35,7 +35,7 @@ jobs:
           echo "${{ secrets.DOCKER_KEY }}" | base64 --decode > ~/.docker/key.pem
 
           docker version
-           
+          
       - name: build-and-deploy
         env:
           DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
