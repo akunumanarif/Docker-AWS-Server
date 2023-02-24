@@ -29,8 +29,7 @@ jobs:
           DOCKER_TLS_VERIFY: "1"
         run: |
           sudo mkdir -pv ~/.docker
-           
-          chmod 700 ~/.docker
+          
           echo <MIIF2zCCA8OgAwIBAgIJAJINxIv33M24MA0GCSqGSIb3DQEBCwUAMIGDMQswCQYD
                 VQQGEwJpZDEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MRwwGgYDVQQKDBNEZWZhdWx0
                 IENvbXBhbnkgTHRkMT8wPQYDVQQDDDZlYzItMTgtMTc5LTI1LTE2OS5hcC1ub3J0
