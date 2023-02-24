@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo -u runner mkdir -p /home/runner/.docker
 
-          echo "${{ secrets.DOCKER_CA }}" | base64 --decode > ~/.docker/ca.pem           
+          echo "${{ secrets.DOCKER_CA }}" | base64 --decode > ~/.docker/ca.pem          
           echo "${{ secrets.DOCKER_CERT }}" | base64 --decode > ~/.docker/cert.pem
           echo "${{ secrets.DOCKER_KEY }}" | base64 --decode > ~/.docker/key.pem
 
