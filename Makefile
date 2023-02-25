@@ -20,6 +20,6 @@ tag:
 	docker tag ${APP_LIST}:${IMAGE_TAG} ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
 
 push:
-	docker push ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
+	docker push --insercure ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
 
 restart: down up
