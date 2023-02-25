@@ -20,6 +20,6 @@ tag:
 	docker tag ${APP_LIST}:${IMAGE_TAG} ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
 
 push:
-	docker push --insecure ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
+	docker push --insecure-registry ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
 
 restart: down up
