@@ -41,20 +41,21 @@ jobs:
           
       - name: build
         env:
-          DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
-          DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
+          DOCKER_HOST: ${{ vars.DOCKER_HOST }}
+          DOCKER_TLS_VERIFY: 1
+#           DOCKER_TLS_VERIFY: ${{ vars.DOCKER_TLS_VERIFY }}
         run: |
           make
           
-      - name: Deploy Docker to AWS (EC2)
-          # You may pin to the exact commit or the version.
-          # uses: bitovi/github-actions-deploy-docker-to-ec2@dee4060122c4c74b597c5cd093ba7380aa9597ae
-        uses: bitovi/github-actions-deploy-docker-to-ec2@v0.5.0
-        with:
-          # Specifies if this action should checkout the code
-          # AWS access key ID
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
-          # AWS secret access key
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # AWS session token
+#       - name: Deploy Docker to AWS (EC2)
+#           # You may pin to the exact commit or the version.
+#           # uses: bitovi/github-actions-deploy-docker-to-ec2@dee4060122c4c74b597c5cd093ba7380aa9597ae
+#         uses: bitovi/github-actions-deploy-docker-to-ec2@v0.5.0
+#         with:
+#           # Specifies if this action should checkout the code
+#           # AWS access key ID
+#           aws_access_key_id: ${{ vars.AWS_ACCESS_KEY }}
+#           # AWS secret access key
+#           aws_secret_access_key: ${{ vars.AWS_SECRET_ACCESS_KEY }}
+#           # AWS session token
           
