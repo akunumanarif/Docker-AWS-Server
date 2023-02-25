@@ -1,7 +1,7 @@
 APP_LIST ?= user-service
 EC2_INSTANCE_IP ?= ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376
 IMAGE_TAG ?= latest
-
+ 
 start : down remove up
 
 down :
