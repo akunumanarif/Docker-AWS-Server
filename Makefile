@@ -1,5 +1,5 @@
 APP_LIST ?= user-service
-EC2_INSTANCE_IP ?= ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376
+EC2_INSTANCE_IP ?= ec2-user@ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376
 IMAGE_TAG ?= latest
  
 start : down remove up
@@ -20,6 +20,6 @@ tag:
 	docker tag ${APP_LIST}:${IMAGE_TAG} ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
 
 push:
-	docker push --insecure-registry ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
+	docker push ${EC2_INSTANCE_IP}/${APP_LIST}:${IMAGE_TAG}
 
 restart: down up
