@@ -45,4 +45,6 @@ jobs:
           DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
         run: |
           make
+          make tag
+          make push
           
