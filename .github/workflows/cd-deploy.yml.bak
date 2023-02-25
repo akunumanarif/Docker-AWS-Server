@@ -41,7 +41,7 @@ jobs:
           
       - name: build-and-deploy
         env:
-          DOCKER_HOST: "tcp://ec2-18-179-25-169.ap-northeast-1.compute.amazonaws.com:2376"
-          DOCKER_TLS_VERIFY: "1"
+          DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
+          DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
         run: |
           make

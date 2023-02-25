@@ -28,7 +28,7 @@ jobs:
           DOCKER_CA: ${{ secrets.DOCKER_CA }}
           DOCKER_CERT: ${{ secrets.DOCKER_CERT }}
           DOCKER_KEY: ${{ secrets.DOCKER_KEY }}
-          DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
+          DOCKER_HOST: tcp://${{ secrets.DOCKER_HOST }}:2376
           DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
         run: |
           mkdir -pv ~/.docker
