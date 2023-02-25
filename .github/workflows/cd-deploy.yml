@@ -23,28 +23,38 @@ jobs:
           cd user-service
           mvn test
           
-      - name: configure-docker-cli
-        env:
-          DOCKER_CA: ${{ secrets.DOCKER_CA }}
-          DOCKER_CERT: ${{ secrets.DOCKER_CERT }}
-          DOCKER_KEY: ${{ secrets.DOCKER_KEY }}
-          DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
-          DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
-        run: |
-          mkdir -pv ~/.docker
+#       - name: configure-docker-cli
+#         env:
+#           DOCKER_CA: ${{ secrets.DOCKER_CA }}
+#           DOCKER_CERT: ${{ secrets.DOCKER_CERT }}
+#           DOCKER_KEY: ${{ secrets.DOCKER_KEY }}
+#           DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
+#           DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
+#         run: |
+#           mkdir -pv ~/.docker
           
-          echo "$DOCKER_CA" | base64 --decode > ~/.docker/ca.pem
-          echo "$DOCKER_CERT" | base64 --decode > ~/.docker/cert.pem
-          echo "$DOCKER_KEY" | base64 --decode > ~/.docker/key.pem
+#           echo "$DOCKER_CA" | base64 --decode > ~/.docker/ca.pem
+#           echo "$DOCKER_CERT" | base64 --decode > ~/.docker/cert.pem
+#           echo "$DOCKER_KEY" | base64 --decode > ~/.docker/key.pem
 
-          docker version
+#           docker version
           
-      - name: build-and-deploy
+      - name: build
         env:
           DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
           DOCKER_TLS_VERIFY: ${{ secrets.DOCKER_TLS_VERIFY }}
         run: |
           make
-          make tag
-          make push
+          
+      - name: Deploy Docker to AWS (EC2)
+          # You may pin to the exact commit or the version.
+          # uses: bitovi/github-actions-deploy-docker-to-ec2@dee4060122c4c74b597c5cd093ba7380aa9597ae
+        uses: bitovi/github-actions-deploy-docker-to-ec2@v0.5.0
+        with:
+          # Specifies if this action should checkout the code
+          # AWS access key ID
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          # AWS secret access key
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS session token
           
